@@ -5,33 +5,34 @@ import java.util.*;
 class Shopping {
   
   LinkedList<Cart> carts = new LinkedList<Cart>();
-  int cartsSize = carts.size();
+  int cartsSize;
   
   void shoppingMenu() {
 	  
     while (true) {
     	Scanner sc = new Scanner(System.in);    	
-      System.out.println("1.카트 임대");
-      System.out.println("2.카트 반납");
-      System.out.println("3.쇼핑 종료");
+    	System.out.println();
+    	System.out.println("1.카트 임대");
+        System.out.println("2.카트 반납");
+        System.out.println("3.쇼핑 종료");
 
-      System.out.print("동작 입력: ");
-      int x = sc.nextInt();
-      if (x == 1) {
-        rentCart();
-      } else if (x == 2) {
-        returnCart();
-      } else if (x == 3) {
-        return;
-      } else {
-        System.out.println("type wrong");
+        System.out.print("동작 입력: ");
+        int x = sc.nextInt();
+        if (x == 1) {
+          rentCart();
+        } else if (x == 2) {
+          returnCart();
+        } else if (x == 3) {
+          return;
+        } else {
+          System.out.println("type wrong");
+        }  	
       }
-    	
-    }
   }
 
   void rentCart() {
 	  Scanner sc = new Scanner(System.in);
+	  System.out.println();
     System.out.println("카트 대여 메뉴");
     System.out.println("type ur name: ");
     String s = sc.nextLine();
@@ -44,9 +45,11 @@ class Shopping {
 	  Scanner sc = new Scanner(System.in);
     String x;
     Cart c;
+    System.out.println();
     System.out.println("카트 반납 메뉴");
     System.out.print("type ur name: ");
     String s = sc.nextLine();
+    cartsSize = carts.size();
     if (cartsSize == 0) {
     	System.out.println("카트가 비어있습니다.");
     	return;
@@ -54,9 +57,9 @@ class Shopping {
     for (int i=0; i < cartsSize; i++) {
       c = carts.get(i);
       x = c.getUser();
-      System.out.printf("%s  %s", s, x );
-      if (s == x) {
+      if (s.equals(x)) {
         carts.remove(i);
+        System.out.println("카트 반납 완료"); 
         return;
       }
     }
@@ -66,6 +69,7 @@ class Shopping {
   void carMenu(Cart c, String s) {
     while (true) {
     	Scanner sc = new Scanner(System.in);
+    	System.out.println();
       System.out.println("1. 카트에 상품 추가");
       System.out.println("2. 카트에 수량 추가");
       System.out.println("3. 카트 상품 제거");
@@ -111,6 +115,7 @@ class Cart {
   void addCart() {
     Item it;
     String s;
+    System.out.println();
     System.out.println("상품 추가 메뉴");
     System.out.print("상품 이름: ");
     String name = sc2.nextLine();
@@ -121,7 +126,7 @@ class Cart {
     for (int i=0; i<itemsSize; i++) {
       it = items.get(i);
       s = it.getGoodsName();
-      if (name == s) {
+      if (name.equals(s)) {
         System.out.print("추가할 수량: ");
         int b = sc2.nextInt();
         int a = it.getAmmount();
@@ -135,6 +140,7 @@ class Cart {
   void updateCart() {
     Item it;
     String s;
+    System.out.println();
     System.out.println("상품 수량 변경 메뉴");
     System.out.print("상품 이름: ");
     String name = sc2.nextLine();
@@ -145,7 +151,7 @@ class Cart {
     for (int i=0; i<itemsSize; i++) {
       it = items.get(i);
       s = it.getGoodsName();
-      if (name == s) {
+      if (name.equals(s)) {
         System.out.println("변경할 수량: ");
         int a = sc2.nextInt();
         it.setAmmount(a);
@@ -158,6 +164,7 @@ class Cart {
   void removeCart() {
     Item it;
     String s;
+    System.out.println();
     System.out.println("상품 제거 메뉴");
     System.out.print("상품 이름: ");
     String name = sc2.nextLine();
@@ -168,7 +175,7 @@ class Cart {
     for (int i=0; i<itemsSize; i++) {
       it = items.get(i);
       s = it.getGoodsName();
-      if (name == s) {
+      if (name.equals(s)) {
     	 items.remove(i);
         return;
       }
@@ -185,6 +192,7 @@ class Cart {
       System.out.println("카트에 상품이 없습니다.");
       return;
     } 
+    System.out.println();
     System.out.println("상품명    수량    가격");
     for (int i=0; i<itemsSize; i++) {
       it = items.get(i);
@@ -203,7 +211,7 @@ class Cart {
     } 
     for (int i=0; i<itemsSize; i++) {
       it = items.remove(i);
-      System.out.println("상품 제거 완료");
+      System.out.println("모든 상품 제거 완료");
     }
   }
   

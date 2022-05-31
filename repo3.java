@@ -86,12 +86,16 @@ class Shopping {
      switch (x) {
     case 1:
       c.addCart();
+      return;
     case 2:
       c.updateCart();
+      return;
     case 3:
       c.removeCart();
+      return;
     case 4:
       c.printItems();
+      return;
     case 5:
       return;
     }
@@ -99,10 +103,10 @@ class Shopping {
 }
 
 class Cart {
-  Scanner sc2 = new Scanner(System.in);
+  
   private String user;
   LinkedList<Item> items = new LinkedList<Item>();
-  int itemsSize = items.size();
+  int itemsSize;
   
   public Cart(String s) {
     user = s;
@@ -113,12 +117,14 @@ class Cart {
   }
 
   void addCart() {
+	  Scanner sc2 = new Scanner(System.in);
     Item it;
     String s;
     System.out.println();
     System.out.println("상품 추가 메뉴");
     System.out.print("상품 이름: ");
     String name = sc2.nextLine();
+    itemsSize = items.size();
     if (itemsSize == 0) {
       addItem(name);
       return;
@@ -138,12 +144,14 @@ class Cart {
   }
 
   void updateCart() {
+	  Scanner sc2 = new Scanner(System.in);
     Item it;
     String s;
     System.out.println();
     System.out.println("상품 수량 변경 메뉴");
     System.out.print("상품 이름: ");
     String name = sc2.nextLine();
+    itemsSize = items.size();
     if (itemsSize == 0) {
       System.out.println("카트에 상품이 없습니다.");
       return;
@@ -162,12 +170,14 @@ class Cart {
   }
 
   void removeCart() {
+	  Scanner sc2 = new Scanner(System.in);
     Item it;
     String s;
     System.out.println();
     System.out.println("상품 제거 메뉴");
     System.out.print("상품 이름: ");
     String name = sc2.nextLine();
+    itemsSize = items.size();
     if (itemsSize == 0) {
       System.out.println("카트에 상품이 없습니다.");
       return;
@@ -177,6 +187,7 @@ class Cart {
       s = it.getGoodsName();
       if (name.equals(s)) {
     	 items.remove(i);
+    	 System.out.println("상품 제거 완료");
         return;
       }
     }
@@ -188,6 +199,7 @@ class Cart {
     String name;
     int amm;
     int price;
+    itemsSize = items.size();
     if (itemsSize == 0) {
       System.out.println("카트에 상품이 없습니다.");
       return;
@@ -205,6 +217,7 @@ class Cart {
 
   void emptyCart() {
     Item it;
+    itemsSize = items.size();
     if (itemsSize == 0) {
       System.out.println("카트에 상품이 없습니다.");
       return;
@@ -228,7 +241,7 @@ class Item {
 
   public Item(String x) {
     goodsName = x;
-    ammount = 0;
+    ammount = 1;
     price = 1000;
   }
 
